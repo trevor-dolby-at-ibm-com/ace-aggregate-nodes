@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE SimpleFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputProperties;
+		SET OutputRoot.JSON.Data.success = true;
+		RETURN TRUE;
+	END;
+END MODULE;

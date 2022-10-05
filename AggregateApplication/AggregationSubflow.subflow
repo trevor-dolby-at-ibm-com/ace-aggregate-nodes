@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmAggregateControl.msgnode="ComIbmAggregateControl.msgnode" xmlns:ComIbmAggregateReply.msgnode="ComIbmAggregateReply.msgnode" xmlns:ComIbmAggregateRequest.msgnode="ComIbmAggregateRequest.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="AggregationSubflow.subflow" nsPrefix="AggregationSubflow.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.aggregateName" name="aggregateName" lowerBound="1" defaultValueLiteral="!@#$%^^%(*%^(*%^(*%^(*%^(*">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="AggregationSubflow" bundleName="AggregationSubflow" pluginId="AggregateApplication"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/AggregateApplication/icons/full/obj16/AggregationSubflow.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/AggregateApplication/icons/full/obj30/AggregationSubflow.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="20,20">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="AggregationSubflow" pluginId="AggregateApplication"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="1056,347">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="AggregationSubflow" pluginId="AggregateApplication"/>
+      </nodes>
+      <nodes xmi:type="ComIbmAggregateControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="282,21" aggregateName="!@#$%^^%(*%^(*%^(*%^(*%^(*" timeoutInterval="0" timeoutLocation="$LocalEnvironment/Aggregation/Timeout">
+        <translation xmi:type="utility:ConstantString" string="Aggregate Control"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="692,17" queueName="SYSTEM.DEFAULT.LOCAL.QUEUE">
+        <translation xmi:type="utility:ConstantString" string="MQ Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="635,297" destination="localError" pattern="Received complete aggregate message:&#xD;&#xA;${Root}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="494,16" computeExpression="esql://routine/#SimpleFlow_Compute2.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="652,235" destination="localError" pattern="Received unknown aggregate message:&#xD;&#xA;${Root}">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmAggregateReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="447,286" aggregateName="!@#$%^^%(*%^(*%^(*%^(*%^(*" unsolicitedTimeout="0" transactionMode="true">
+        <translation xmi:type="utility:ConstantString" string="Aggregate Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="812,347" computeExpression="esql://routine/#SimpleFlow_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmAggregateRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="935,21" folderName="OnlyMessage">
+        <translation xmi:type="utility:ConstantString" string="Aggregate Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="72,291" queueName="SYSTEM.DEFAULT.LOCAL.QUEUE" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="255,289" computeExpression="esql://routine/#SimpleFlow_Compute1.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Compute1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="278,221" destination="localError" pattern="MQ message failed:&#xD;&#xA;${Root}">
+        <translation xmi:type="utility:ConstantString" string="Trace2"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.unknown" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" describedAttribute="Property.aggregateName">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.aggregateName" bundleName="ComIbmAggregateReply" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.aggregateName" overriddenNodes="FCMComposite_1_8">
+      <overriddenAttribute href="ComIbmAggregateReply.msgnode#Property.aggregateName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.aggregateName" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="ComIbmAggregateControl.msgnode#Property.aggregateName"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

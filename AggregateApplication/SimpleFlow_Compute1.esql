@@ -1,0 +1,12 @@
+
+
+CREATE COMPUTE MODULE SimpleFlow_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.MQMD.CorrelId = OutputRoot.MQMD.MsgId;
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputRoot.XMLNSC.top.correl AS BLOB);
+		
+		RETURN TRUE;
+	END;
+END MODULE;

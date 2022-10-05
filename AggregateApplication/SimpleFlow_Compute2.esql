@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE SimpleFlow_Compute2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputProperties;
+		SET OutputRoot.XMLNSC.top.correl = CAST(InputLocalEnvironment.Destination.HTTP.RequestIdentifier AS CHARACTER);
+		RETURN TRUE;
+	END;
+END MODULE;
