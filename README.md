@@ -10,4 +10,6 @@ C:\Program Files\IBM\ACE\12.0.6.0>curl http://localhost:7080/simpleFlow
 {"success":true}
 C:\Program Files\IBM\ACE\12.0.6.0>curl http://localhost:7080/topLevelFlow
 {"success":true}
+C:\Program Files\IBM\ACE\12.0.6.0>curl http://localhost:7080/nonDefaultProject
+{"success":true}
 ```
